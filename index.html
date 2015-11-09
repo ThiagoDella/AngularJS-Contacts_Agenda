@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="">
+<html lang="en" ng-app="contactsAgenda">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +7,12 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Contacts Agenda 0.0.x</title>
 
-    <link href="main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!--Ladda-->
+    <link rel="stylesheet" type="text/css" href="libs/ladda/dist/ladda-themeless.min.css">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,13 +21,87 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
-    <h1>Hello, world!</h1>
 
-    <script type="text/javascript" src="angular.js"></script>
+<body >
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container" >
+        <div class="navbar-header" >
+            <a class="navbar-brand"
+               href="/" >Lists Of Things
+            </a >
+        </div >
+    </div >
+</nav >
+
+<div class="container main-content" ng-controller="PersonsController">
+    
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-boardered">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birthdate</th>
+                </tr>
+                <tr ng-repeat="person in persons" ng-style="
+                {
+                'background-color': $index == selectedIndex ? 'lightgray' : ''}
+                "
+                ng-click="selectPerson(person,$index)">
+                    <td>{{$index}}</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.email}}</td>
+                    <td>{{person.birthdate |date: "dd.MMM.yyyy"}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Details</div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd>{{selectedPerson.name}}</dd>
+                        <dt>Email</dt>
+                        <dd>{{selectedPerson.email}}</dd>
+                        <dt>Birthdate</dt>
+                        <dd>{{selectedPerson.birthdate | date:"dd.MMM.yyyy"}}</dd>
+                        <dt>Phonenumber</dt>
+                        <dd>{{selectedPerson.phonenumber}}</dd>
+                        <dt>Address</dt>
+                        <dd>{{selectedPerson.address}}</dd>
+                        <dt>City</dt>
+                        <dd>{{selectedPerson.city}}</dd>
+                        <dt>Country</dt>
+                        <dd>{{selectedPerson.country}}</dd>
+                        
+                        
+
+                    </dl>
+                </div>
+            </div>    
+        </div>
+
+    </div>
+</div >
+
+
+
+    <!--angularJS-->
+    <script type="text/javascript" src="libs/angular/angular.min.js"></script>
+    <!--angular Auto Validate -->
+    <script type="text/javascript" src="libs/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+    <!--ladda-->
+    <script type="text/javascript" src="libs/ladda/dist/spin.min.js"></script>
+    <script type="text/javascript" src="libs/ladda/dist/ladda.min.js"></script>
+    <script type="text/javascript" src="libs/angular-ladda/dist/angular-ladda.min.js"></script>
+    <!-- main JS -->
+    <script type="text/javascript" src="js/main.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+</body >
+</html >
