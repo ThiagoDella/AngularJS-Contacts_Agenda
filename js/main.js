@@ -14,12 +14,18 @@ var app = angular.module('contactsAgenda',[
 );*/
 
 app.controller('PersonsController',function($scope){
-	$scope.selectedIndex = null;
 	$scope.selectedPerson = null;
-	$scope.selectPerson = function(person,index){
-		$scope.selectedIndex = index;
+	$scope.search = "";
+	$scope.order = "name";
+	$scope.selectPerson = function(person){
 		$scope.selectedPerson = person;
 		
+	};
+	$scope.sensitiveSearch = function(person){
+		if($scope.search){
+			return person.name.indexOf($scope.search) == 0 || person.email.indexOf($scope.search) == 0;
+		}
+		return true;
 	};
 
 	$scope.persons = [
